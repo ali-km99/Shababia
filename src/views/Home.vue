@@ -2,7 +2,7 @@
   <div class="bg-Rounds min-h-[100vh] bg-no-repeat bg-right-top md:bg-contain">
     <div class="relative"><SmallNavbar /></div>
     <div class="hidden lg:block"><NavBar></NavBar></div>
-    <div class="text-6xl text-white text-end pl-14 pt-44" dir="rtl">
+    <div class="text-6xl text-white text-end pl-14 md:pt-44 mt-11" dir="rtl">
       <p>قناة <span class="text-primary">الشباب</span> ...</p>
       <p>بصوت <span class="text-primary">الشباب</span></p>
     </div>
@@ -12,7 +12,7 @@
       <img src="../assets/imgs/shadow.png" alt="" class="absolute top-16 right-5 -z-10" />
     </div>
     <div
-      class="text-start flax justify-end md:w-1/3 w-full text-white text-lg md:-mt-32 mt-8 pl-10"
+      class="text-start flax justify-end md:w-1/3 w-full text-white text-lg md:-mt-32 mt-8 md:pl-10 p-10 backdrop-blur-sm md:backdrop-blur-none"
       dir="rtl"
     >
       <p>صوتُنا يمتد، ورسالتُنا تستمر.</p>
