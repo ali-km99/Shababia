@@ -1,16 +1,20 @@
 <template>
-  <div class="bg-Rounds min-h-[100vh] bg-no-repeat bg-right-top bg-contain">
-    <NavBar></NavBar>
+  <div class="bg-Rounds min-h-[100vh] bg-no-repeat bg-right-top md:bg-contain">
+    <div class="relative"><SmallNavbar /></div>
+    <div class="hidden lg:block"><NavBar></NavBar></div>
     <div class="text-6xl text-white text-end pl-14 pt-44" dir="rtl">
       <p>قناة <span class="text-primary">الشباب</span> ...</p>
       <p>بصوت <span class="text-primary">الشباب</span></p>
     </div>
 
-    <div dir="rtl" class="pr-36 -mt-32">
+    <div dir="rtl" class="pr-36 md:-mt-32 hidden md:block">
       <img src="../assets/imgs/logo2.png" alt="" />
       <img src="../assets/imgs/shadow.png" alt="" class="absolute top-16 right-5 -z-10" />
     </div>
-    <div class="text-start flax justify-end w-1/3 text-white text-lg -mt-32 pl-10" dir="rtl">
+    <div
+      class="text-start flax justify-end md:w-1/3 w-full text-white text-lg md:-mt-32 mt-8 pl-10"
+      dir="rtl"
+    >
       <p>صوتُنا يمتد، ورسالتُنا تستمر.</p>
       <p><span class="text-primary font-bold">راديو الشبابية</span>.. حيث تلتقي الأجيال.</p>
       <p>منذ البدايات، كان راديو الشبابية منبرًا للأفكار، وحلقة وصل بين الأجيال، ينقل القيم،</p>
@@ -44,6 +48,11 @@
         :autoplay="{ delay: 3000, disableOnInteraction: false }"
         :navigation="true"
         :pagination="{ clickable: true }"
+        :breakpoints="{
+          320: { slidesPerView: 1, spaceBetween: 10 }, // موبايل
+          640: { slidesPerView: 2, spaceBetween: 15 }, // تابلت
+          1024: { slidesPerView: 3, spaceBetween: 20 }, // ديسكتوب
+        }"
         class="w-full"
       >
         <SwiperSlide v-for="(program, index) in programs" :key="index" class="px-10">
@@ -56,12 +65,12 @@
       </Swiper>
     </div>
   </section>
-  <footer class="bg-footer h-[70vh] bg-no-repeat bg-cover p-12">
-    <div class="p-6 flex justify-between" dir="rtl">
-      <div class="h-full w-1/4">
+  <footer class="bg-footer md:h-[70vh] h-[120vh] bg-no-repeat bg-cover p-12">
+    <div class="p-6 flex justify-between flex-col md:flex-row" dir="rtl">
+      <div class="h-full md:w-1/4">
         <img class="pt-2 mt-4 mx-auto" width="200" src="../assets/imgs/logo.png" alt="" />
       </div>
-      <div class="h-full w-1/3">
+      <div class="h-full md:w-1/3 w-full">
         <h3 class="text-center text-white p-3 mb-6 text-xl font-bold">الصفحات</h3>
         <div class="flex justify-around">
           <ul class="p-2 text-white/50">
@@ -77,7 +86,7 @@
           </ul>
         </div>
       </div>
-      <div class="h-full w-1/4">
+      <div class="h-full md:w-1/4">
         <h3 class="text-center text-white p-3 mb-6 text-xl font-bold">التواصل</h3>
         <ul class="p-2 text-white/50">
           <li class="my-2 flex items-center">
@@ -117,6 +126,7 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import { Navigation, Pagination, Autoplay } from 'swiper/modules'
 import NavBar from '@/components/NavBar.vue'
+import SmallNavbar from '@/components/SmallNavbar.vue'
 
 const programs = ref([
   {
