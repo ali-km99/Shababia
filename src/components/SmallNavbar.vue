@@ -69,7 +69,7 @@ const handleNavigation = (): void => {
           </li>
 
           <li v-motion-pop :delay="200" class="py-2 border-b-2 border-bluee-sec w-full text-center">
-            <RouterLink to="/"> برامجنا </RouterLink>
+            <RouterLink to="/Programs"> برامجنا </RouterLink>
           </li>
 
           <li v-motion-pop :delay="400" class="py-2 border-b-2 border-bluee-sec w-full text-center">
@@ -80,7 +80,7 @@ const handleNavigation = (): void => {
             <RouterLink to="/"> الأستماع المباشر</RouterLink>
           </li>
           <li v-motion-pop :delay="800" class="py-2 border-b-2 border-bluee-sec w-full text-center">
-            <RouterLink to="/"> بودكاست</RouterLink>
+            <RouterLink to="/News"> اخر الأخبار</RouterLink>
           </li>
 
           <li

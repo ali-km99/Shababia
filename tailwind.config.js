@@ -10,6 +10,7 @@ export default {
       backgroundImage: {
         Rounds: "url('../assets/Rounds.svg')",
         footer: "url('../assets/footerBG.png')",
+        footer2: "url('../assets/footerBG2.png')",
       },
       colors: {
         primary: '#832BC1', // Replace with your desired color
