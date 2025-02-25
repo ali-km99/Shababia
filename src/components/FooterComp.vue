@@ -8,10 +8,22 @@
         <h3 class="text-center text-white p-3 mb-6 text-xl font-bold">الصفحات</h3>
         <div class="flex justify-around">
           <ul class="p-2 text-white/50">
-            <li class="my-2"><a href="">الرئيسة</a></li>
-            <li class="my-2"><a href="">برامجنا</a></li>
-            <li class="my-2"><a href="">التأسيس</a></li>
-            <li class="my-2"><a href="">بودكاست</a></li>
+            <li class="my-2">
+              <RouterLink to="/" class="hover:text-white duration-200"> الصفحة الرئيسة </RouterLink>
+            </li>
+            <li class="my-2">
+              <RouterLink to="/Programs" class="hover:text-white duration-200">
+                برامجنا
+              </RouterLink>
+            </li>
+            <li class="my-2">
+              <RouterLink to="/about" class="hover:text-white duration-200"> التأسيس </RouterLink>
+            </li>
+            <li class="my-2">
+              <RouterLink to="/" class="hover:text-white duration-200">
+                الأستماع المباشر
+              </RouterLink>
+            </li>
           </ul>
           <ul class="p-2 text-white/50">
             <li class="my-2"><a href="">فريق العمل</a></li>

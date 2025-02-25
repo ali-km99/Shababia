@@ -36,8 +36,17 @@
     </div>
   </div>
   <section class="my-20">
-    <h2 class="text-primary text-end p-12 pb-3 text-5xl font-bold">برامجنا</h2>
-    <p class="text-end text-white px-12">اكتشف ما نقدمه من برامج</p>
+    <div v-motion-slide-visible-bottom :duration="1000">
+      <h2 class="text-primary text-end p-12 pb-3 text-5xl font-bold">برامجنا</h2>
+    </div>
+    <p
+      class="text-end text-white px-12"
+      v-motion-slide-visible-bottom
+      :delay="200"
+      :duration="1000"
+    >
+      اكتشف ما نقدمه من برامج
+    </p>
 
     <div class="relative px-12 py-3 my-10">
       <Swiper
@@ -66,8 +75,21 @@
     </div>
   </section>
   <section class="my-20">
-    <h2 class="text-primary text-end p-12 pb-3 text-5xl font-bold">اخر الأخبار</h2>
-    <p class="text-end text-white px-12">تابع اخر الأخبار و كل ما هو جديد</p>
+    <h2
+      class="text-primary text-end p-12 pb-3 text-5xl font-bold"
+      v-motion-slide-visible-bottom
+      :duration="1000"
+    >
+      اخر الأخبار
+    </h2>
+    <p
+      class="text-end text-white px-12"
+      v-motion-slide-visible-bottom
+      :delay="200"
+      :duration="1000"
+    >
+      تابع اخر الأخبار و كل ما هو جديد
+    </p>
 
     <div class="relative px-12 py-3 my-10">
       <Swiper
@@ -95,6 +117,7 @@
       </Swiper>
     </div>
   </section>
+  <ContactUS />
   <FooterComp></FooterComp>
 </template>
 
@@ -108,6 +131,7 @@ import { Navigation, Pagination, Autoplay } from 'swiper/modules'
 import NavBar from '@/components/NavBar.vue'
 import SmallNavbar from '@/components/SmallNavbar.vue'
 import FooterComp from '@/components/FooterComp.vue'
+import ContactUS from '@/components/ContactUS.vue'
 
 const programs = ref([
   {

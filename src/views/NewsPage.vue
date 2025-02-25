@@ -1,8 +1,16 @@
 <template>
   <div class="relative"><SmallNavbar /></div>
   <div class="hidden lg:block"><NavBar></NavBar></div>
+  <div></div>
   <div class="p-4 bg-[#1e1e1e] min-h-screen text-white">
-    <h1 class="text-3xl font-bold mb-4 text-right p-4">اخر الأخبار</h1>
+    <h1
+      class="text-3xl font-bold mb-4 text-right p-4"
+      v-motion-slide-visible-bottom
+      :delay="200"
+      :duration="1000"
+    >
+      اخر الأخبار
+    </h1>
 
     <!-- التبويبات -->
     <div class="flex justify-end space-x-4 rtl:space-x-reverse mb-6">
@@ -38,11 +46,12 @@
         }"
       >
         <swiper-slide
+          @click="handleClick(program)"
           v-for="program in filteredPrograms"
           :key="program.id"
           class="px-12 drop-shadow-md"
         >
-          <div class="relative rounded-xl overflow-hidden shadow-lg">
+          <div id="program" class="relative rounded-xl overflow-hidden shadow-lg">
             <!-- Background Image with Overlay -->
             <div class="relative w-full h-80">
               <img :src="program.image" alt="program image" class="w-full h-full object-cover" />
@@ -54,11 +63,7 @@
             <!-- Content Overlay -->
             <div class="absolute bottom-0 w-full p-4 text-white">
               <h2 class="text-xl font-bold mb-1">{{ program.title }}</h2>
-              <p class="text-sm mb-2">{{ program.category }} - {{ program.date }}</p>
-              <div class="flex items-center">
-                <img class="w-7 h-7" src="../assets/icons/face.png" alt="icon" />
-                <p class="pl-2">{{ program.name }}</p>
-              </div>
+              <p class="text-xs font-semibold">{{ program.category }} - {{ program.date }}</p>
             </div>
           </div>
         </swiper-slide>
@@ -66,7 +71,14 @@
     </div>
 
     <!-- برامج أخرى -->
-    <h2 class="text-3xl font-bold mb-4 mt-12 text-end p-4">اخبار منوعة</h2>
+    <h2
+      class="text-3xl font-bold mb-4 mt-12 text-end p-4"
+      v-motion-slide-visible-bottom
+      :delay="200"
+      :duration="1000"
+    >
+      اخبار منوعة
+    </h2>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
       <div
         v-for="program in randomPrograms"
@@ -94,7 +106,11 @@ import { Autoplay, Navigation, Pagination } from 'swiper/modules'
 import NavBar from '@/components/NavBar.vue'
 import SmallNavbar from '@/components/SmallNavbar.vue'
 import FooterComp from '@/components/FooterComp.vue'
+import type { program } from '@/types/program'
 
+function handleClick(program: program) {
+  console.log(`Title: ${program.category}`)
+}
 // التبويبات
 const tabs = ref([
   { label: 'الكل', value: 'all' },

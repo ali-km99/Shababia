@@ -2,8 +2,6 @@
   <div class="relative"><SmallNavbar /></div>
   <div class="hidden lg:block"><NavBar></NavBar></div>
   <div class="p-4 bg-[#1e1e1e] min-h-screen text-white">
-    <h1 class="text-3xl font-bold mb-4 text-right p-4">برامجنا</h1>
-
     <!-- التبويبات -->
     <div class="flex justify-end space-x-4 rtl:space-x-reverse mb-6">
       <button
@@ -103,6 +101,7 @@ const programs = ref([
     category: 'social',
     date: '2025-02-22',
     name: ' سارة سويسي',
+
     image: 'https://i.postimg.cc/Tw6vS6Dm/475103928-1004395018379701-7991509967441081360-n.jpg',
   },
   {
