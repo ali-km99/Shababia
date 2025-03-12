@@ -8,7 +8,7 @@
     </div>
 
     <div dir="rtl" class="pr-36 md:-mt-32 hidden md:block">
-      <img src="../assets/imgs/logo2.png" alt="" />
+      <img width="350px" src="../assets/imgs/logo3.png" alt="" />
       <img src="../assets/imgs/shadow.png" alt="" class="absolute top-16 right-5 -z-10" />
     </div>
     <div

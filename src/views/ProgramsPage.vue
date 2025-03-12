@@ -1,6 +1,61 @@
 <template>
   <div class="relative"><SmallNavbar /></div>
   <div class="hidden lg:block"><NavBar></NavBar></div>
+  <div
+    v-if="newsModel"
+    :onclick="handleClick"
+    class="w-full h-screen backdrop-blur-sm absolute top-0 right-0 z-30"
+  >
+    <div class="w-1/2 h-3/4 bg-black/80 mx-auto mt-[150px] rounded-lg relative">
+      <div class="w-9 h-9 p-2 rounded-full bg-slate-100 absolute -top-4 -right-4 cursor-pointer">
+        <img width="20px" src="../assets/icons/close.png" alt="" />
+      </div>
+      <div class="grid grid-cols-2">
+        <div class="m-8 items-end flex flex-col">
+          <div class="flex p-4">
+            <p class="text-primary mr-3">{{ selectedProgram?.name }}</p>
+            <img width="30px" src="../assets/icons/face.png" alt="" />
+          </div>
+          <div class="flex p-4">
+            <p class="text-primary mr-3">{{ selectedProgram?.date }}</p>
+            <img width="30px" src="../assets/icons/date.png" alt="" />
+          </div>
+          <div class="flex p-4">
+            <p class="text-primary mr-3">{{}}</p>
+            <img width="30px" src="../assets/icons/time.png" alt="" />
+          </div>
+          <div class="flex p-4 items-center">
+            <div class="flex flex-row">
+              <!-- نجمة 5 -->
+              <input type="radio" name="rating" id="star5" class="hidden" />
+              <label for="star5" class="star cursor-pointer text-2xl text-gray-300">★</label>
+
+              <!-- نجمة 4 -->
+              <input type="radio" name="rating" id="star4" class="hidden" />
+              <label for="star4" class="star cursor-pointer text-2xl text-gray-300">★</label>
+
+              <!-- نجمة 3 -->
+              <input type="radio" name="rating" id="star3" class="hidden" />
+              <label for="star3" class="star cursor-pointer text-2xl text-gray-300">★</label>
+
+              <!-- نجمة 2 -->
+              <input type="radio" name="rating" id="star2" class="hidden" />
+              <label for="star2" class="star cursor-pointer text-2xl text-gray-300">★</label>
+
+              <!-- نجمة 1 -->
+              <input type="radio" name="rating" id="star1" class="hidden" />
+              <label for="star1" class="star cursor-pointer text-2xl text-gray-300">★</label>
+            </div>
+            <p class="text-primary ml-3">تقيم البرنامج</p>
+          </div>
+        </div>
+        <div class="m-8 rounded-lg">
+          <img :src="selectedProgram?.image" alt="" />
+        </div>
+      </div>
+      <p class="text-primary text-end p-4">{{}}</p>
+    </div>
+  </div>
   <div class="p-4 bg-[#1e1e1e] min-h-screen text-white">
     <!-- التبويبات -->
     <div class="flex justify-end space-x-4 rtl:space-x-reverse mb-6">
@@ -36,6 +91,7 @@
         }"
       >
         <swiper-slide
+          @click="handleClick(program)"
           v-for="program in filteredPrograms"
           :key="program.id"
           class="px-12 drop-shadow-md"
@@ -84,6 +140,7 @@ import { Autoplay, Navigation, Pagination } from 'swiper/modules'
 import NavBar from '@/components/NavBar.vue'
 import SmallNavbar from '@/components/SmallNavbar.vue'
 import FooterComp from '@/components/FooterComp.vue'
+import type { program } from '@/types/program'
 
 // التبويبات
 const tabs = ref([
@@ -92,7 +149,13 @@ const tabs = ref([
   { label: 'ثقافي', value: 'cultural' },
   { label: 'رياضي', value: 'sports' },
 ])
-
+const newsModel = ref(false)
+const selectedProgram = ref<program>()
+function handleClick(program: program) {
+  selectedProgram.value = program
+  newsModel.value = !newsModel.value
+  console.log(`Title: ${program.category}`)
+}
 // البرامج التجريبية
 const programs = ref([
   {

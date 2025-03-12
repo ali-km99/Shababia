@@ -1,7 +1,61 @@
 <template>
   <div class="relative"><SmallNavbar /></div>
   <div class="hidden lg:block"><NavBar></NavBar></div>
-  <div></div>
+  <div
+    v-if="newsModel"
+    :onclick="handleClick"
+    class="w-full h-screen backdrop-blur-sm absolute top-0 right-0 z-30"
+  >
+    <div class="w-1/2 h-3/4 bg-black/80 mx-auto mt-[150px] rounded-lg relative">
+      <div class="w-9 h-9 p-2 rounded-full bg-slate-100 absolute -top-4 -right-4 cursor-pointer">
+        <img width="20px" src="../assets/icons/close.png" alt="" />
+      </div>
+      <div class="grid grid-cols-2">
+        <div class="m-8 items-end flex flex-col">
+          <div class="flex p-4">
+            <p class="text-primary mr-3">{{ selectedProgram?.name }}</p>
+            <img width="30px" src="../assets/icons/face.png" alt="" />
+          </div>
+          <div class="flex p-4">
+            <p class="text-primary mr-3">{{ selectedProgram?.date }}</p>
+            <img width="30px" src="../assets/icons/date.png" alt="" />
+          </div>
+          <div class="flex p-4">
+            <p class="text-primary mr-3">{{ selectedProgram?.time }}</p>
+            <img width="30px" src="../assets/icons/time.png" alt="" />
+          </div>
+          <div class="flex p-4 items-center">
+            <div class="flex flex-row">
+              <!-- نجمة 5 -->
+              <input type="radio" name="rating" id="star5" class="hidden" />
+              <label for="star5" class="star cursor-pointer text-2xl text-gray-300">★</label>
+
+              <!-- نجمة 4 -->
+              <input type="radio" name="rating" id="star4" class="hidden" />
+              <label for="star4" class="star cursor-pointer text-2xl text-gray-300">★</label>
+
+              <!-- نجمة 3 -->
+              <input type="radio" name="rating" id="star3" class="hidden" />
+              <label for="star3" class="star cursor-pointer text-2xl text-gray-300">★</label>
+
+              <!-- نجمة 2 -->
+              <input type="radio" name="rating" id="star2" class="hidden" />
+              <label for="star2" class="star cursor-pointer text-2xl text-gray-300">★</label>
+
+              <!-- نجمة 1 -->
+              <input type="radio" name="rating" id="star1" class="hidden" />
+              <label for="star1" class="star cursor-pointer text-2xl text-gray-300">★</label>
+            </div>
+            <p class="text-primary ml-3">تقيم البرنامج</p>
+          </div>
+        </div>
+        <div class="m-8 rounded-lg">
+          <img :src="selectedProgram?.image" alt="" />
+        </div>
+      </div>
+      <p class="text-primary text-end p-4">{{ selectedProgram?.dicr }}</p>
+    </div>
+  </div>
   <div class="p-4 bg-[#1e1e1e] min-h-screen text-white">
     <h1
       class="text-3xl font-bold mb-4 text-right p-4"
@@ -106,9 +160,14 @@ import { Autoplay, Navigation, Pagination } from 'swiper/modules'
 import NavBar from '@/components/NavBar.vue'
 import SmallNavbar from '@/components/SmallNavbar.vue'
 import FooterComp from '@/components/FooterComp.vue'
-import type { program } from '@/types/program'
 
-function handleClick(program: program) {
+import type { news } from '@/types/news'
+
+const newsModel = ref(false)
+const selectedProgram = ref<news>()
+function handleClick(program: news) {
+  selectedProgram.value = program
+  newsModel.value = !newsModel.value
   console.log(`Title: ${program.category}`)
 }
 // التبويبات
@@ -120,14 +179,16 @@ const tabs = ref([
 ])
 
 // البرامج التجريبية
-const programs = ref([
+const programs = ref<news[]>([
   {
     id: 1,
     title: 'برنامج الصباح',
     category: 'social',
     date: '2025-02-22',
     name: ' سارة سويسي',
+    time: '2:00 pm',
     image: 'https://i.postimg.cc/Tw6vS6Dm/475103928-1004395018379701-7991509967441081360-n.jpg',
+    dicr: 'استعدوا لحلقة جديدة من لايف ستايل',
   },
   {
     id: 2,
@@ -135,7 +196,9 @@ const programs = ref([
     category: 'cultural',
     date: '2025-02-20',
     name: 'سمية بسيكري',
+    time: '3:00 pm',
     image: 'https://i.postimg.cc/4y8CmHFb/476837484-1011379207681282-7438754021829096849-n.jpg',
+    dicr: 'استعدوا لحلقة جديدة من لايف ستايل',
   },
   {
     id: 3,
@@ -143,7 +206,9 @@ const programs = ref([
     category: 'sports',
     date: '2025-02-18',
     name: ' فيصل الأصيبعي',
+    time: '7:00 pm',
     image: 'https://i.postimg.cc/MHZ26mtp/475764524-1006511798168023-5152673009923635572-n.jpg',
+    dicr: 'استعدوا لحلقة جديدة من برنامج الرياضة',
   },
   {
     id: 4,
@@ -151,7 +216,9 @@ const programs = ref([
     category: 'health',
     date: '2025-02-15',
     name: ' مصطفى ابو حميدة',
+    time: '8:00 am',
     image: 'https://i.postimg.cc/h4MRCNPz/476292528-1007050961447440-1325635271025850142-n.jpg',
+    dicr: 'استعدوا لحلقة جديدة من لايف ستايل',
   },
   {
     id: 5,
@@ -159,7 +226,9 @@ const programs = ref([
     category: 'social',
     date: '2025-02-10',
     name: ' سارة سويسي',
+    time: '8:00 am',
     image: 'https://i.postimg.cc/Tw6vS6Dm/475103928-1004395018379701-7991509967441081360-n.jpg',
+    dicr: 'استعدوا لحلقة جديدة من لايف ستايل',
   },
   {
     id: 1,
@@ -167,7 +236,9 @@ const programs = ref([
     category: 'social',
     date: '2025-02-22',
     name: 'سمية بسيكري',
+    time: '8:00 am',
     image: 'https://i.postimg.cc/4y8CmHFb/476837484-1011379207681282-7438754021829096849-n.jpg',
+    dicr: 'استعدوا لحلقة جديدة من لايف ستايل',
   },
   {
     id: 2,
@@ -175,28 +246,36 @@ const programs = ref([
     category: 'cultural',
     date: '2025-02-20',
     name: ' فيصل الأصيبعي',
+    time: '8:00 am',
     image: 'https://i.postimg.cc/MHZ26mtp/475764524-1006511798168023-5152673009923635572-n.jpg',
+    dicr: 'استعدوا لحلقة جديدة من لايف ستايل',
   },
   {
     id: 3,
     title: 'برنامج الرياضة',
     category: 'sports',
     date: '2025-02-18',
+    time: '8:00 am',
     image: 'https://i.postimg.cc/h4MRCNPz/476292528-1007050961447440-1325635271025850142-n.jpg',
+    dicr: 'استعدوا لحلقة جديدة من لايف ستايل',
   },
   {
     id: 4,
     title: 'برنامج الصحة',
     category: 'health',
     date: '2025-02-15',
+    time: '8:00 am',
     image: 'https://i.postimg.cc/Tw6vS6Dm/475103928-1004395018379701-7991509967441081360-n.jpg',
+    dicr: 'استعدوا لحلقة جديدة من لايف ستايل',
   },
   {
     id: 5,
     title: 'برنامج المساء',
     category: 'social',
     date: '2025-02-10',
+    time: '8:00 am',
     image: 'https://i.postimg.cc/Tw6vS6Dm/475103928-1004395018379701-7991509967441081360-n.jpg',
+    dicr: 'استعدوا لحلقة جديدة من لايف ستايل',
   },
 ])
 
@@ -221,5 +300,10 @@ body {
   background-color: #1e1e1e;
   direction: rtl;
   font-family: 'Tajawal', sans-serif;
+}
+
+.star:hover,
+.star:hover ~ .star {
+  color: #facc15; /* يمكنك استبداله بلون ذهبي مناسب */
 }
 </style>
